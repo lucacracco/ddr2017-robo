@@ -1,0 +1,50 @@
+# Enviroment
+environment: local
+
+# Base Path
+base_path: /var/www/html
+
+# Path to drush
+drush_path: ./vendor/bin/drush
+
+# Domani used
+domain: 'http://default.dd'
+
+# Database Configuration
+database:
+  url: 'mysql://drupal:drupal@mysql_default:3306/drupal'
+  prefix: ''
+  namespace: 'Drupal\\Core\\Database\\Driver\\mysql'
+  driver: 'mysql'
+
+# Site configuration
+site_configuration:
+  site_uuid: b05adf4a-1663-4f47-ac02-054b66b46ed5
+  mail: site@example.it
+  name: 'Drupal Day 2017 Roma | Drupal8'
+  locale: en
+  profile: standard
+  uri: default
+  sub_dir: default
+  config_dir: '../config/default'
+  root: 'web'
+  site_root: 'web'
+  # Theme active in front-end
+  theme_frontend: bartik
+
+# These data will be used for the first user during installation
+account:
+  mail: admin@example.com
+  name: admin
+  pass: admin
+
+# Modules Development that will be installed. (use only environment local)
+modules_dev:
+  - devel
+  - devel_generate
+  - kint
+  - field_ui
+  - config_inspector
+  - config_devel
+  - config_partial_export
+  - webprofiler

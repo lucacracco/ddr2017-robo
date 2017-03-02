@@ -1,0 +1,15 @@
+#!/bin/bash
+
+###### README ######
+# Use 'source .alias' for active this short-key.
+##
+
+alias drush-default="vendor/bin/drush -r /var/www/html/web -l default"
+alias drupal-default="vendor/bin/drupal --root=\"/var/www/html/web\" --uri=\"default\""
+
+alias drush-test="vendor/bin/drush -r /var/www/html/web -l test"
+alias drupal-test="vendor/bin/drupal --root=\"/var/www/html/web\" --uri=\"test\""
+
+# Component.
+alias robo="vendor/bin/robo"
+alias phpunit="vendor/bin/phpunit"

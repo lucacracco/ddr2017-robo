@@ -1,0 +1,97 @@
+{
+  "name": "lucacracco/talk_robo_dd2017_example",
+  "description": "Project template for Drupal 8 projects with composer",
+  "type": "project",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Luca Cracco",
+      "role": "Drupal Developer"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "boedah/robo-drush": "^3.0",
+    "composer/installers": "^1.2",
+    "consolidation/robo": "^1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal-composer/drupal-scaffold": "^2.2",
+    "drupal/admin_toolbar": "1.18",
+    "drupal/console": "1.0.0-rc14",
+    "drupal/core": "8.2.6",
+    "drupal/entity_reference_revisions": "1.2",
+    "drupal/libraries": "dev-3.x",
+    "drupal/paragraphs": "1.1",
+    "drupal/pathauto": "1.0-beta1",
+    "drupal/token": "1.0-rc1",
+    "drush/drush": "~8.0"
+  },
+  "require-dev": {
+    "behat/mink-goutte-driver": "~1.2",
+    "behat/mink": "~1.6",
+    "components/highlightjs": "9.7.0",
+    "drupal/coder": "2.10",
+    "drupal/config_devel": "1.0",
+    "drupal/config_inspector": "1.0-beta1",
+    "drupal/config_partial_export": "1.4",
+    "drupal/devel": "1.0-rc1",
+    "edgedesign/phpqa": "~1.3",
+    "jcalderonzumba/gastonjs": "^1.1@dev",
+    "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+    "mbostock/d3": "3.5.17",
+    "mikey179/vfsStream": "~1.2",
+    "phpunit/phpunit": "~4.8",
+    "symfony/css-selector": "2.7.*"
+  },
+  "conflict": {
+    "drupal/drupal": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "classmap": [
+      "scripts/composer/ScriptHandler.php"
+    ]
+  },
+  "scripts": {
+    "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "pre-install-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+    ],
+    "pre-update-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+    ]
+  },
+  "extra": {
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "patches": {
+      "drupal/config_devel": {
+        "Load Empty settings module": "patches/config_devel-load_empty_settings_module-XXX-XXX.patch"
+      }
+    }
+  }
+}
