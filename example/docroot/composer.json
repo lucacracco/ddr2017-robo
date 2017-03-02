@@ -13,6 +13,10 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "url": "https://github.com/lucacracco/robo-drupal8.git",
+      "type": "git"
     }
   ],
   "require": {
@@ -24,12 +28,14 @@
     "drupal/admin_toolbar": "1.18",
     "drupal/console": "1.0.0-rc14",
     "drupal/core": "8.2.6",
+    "drupal/config_installer": "1.4",
     "drupal/entity_reference_revisions": "1.2",
     "drupal/libraries": "dev-3.x",
     "drupal/paragraphs": "1.1",
     "drupal/pathauto": "1.0-beta1",
     "drupal/token": "1.0-rc1",
-    "drush/drush": "~8.0"
+    "drush/drush": "~8.0",
+    "lucacracco/robo-drupal8": "dev-RobofileCommands"
   },
   "require-dev": {
     "behat/mink-goutte-driver": "~1.2",

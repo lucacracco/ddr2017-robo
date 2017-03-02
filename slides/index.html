@@ -43,6 +43,10 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
 
+        <section data-background="images/slide_front.jpg"
+                 data-background-size="auto 80%">
+        </section>
+
         <!-- Home -->
         <section>
             <section>
@@ -55,9 +59,9 @@
                      width="30%" style="float: right; margin: 20px;">
                 <p style="width: 60%;padding-top: 6%">
                     Freelance & Drupal Developer<br/>
-                    Follow me: <br/>
-                    <a href="">Twitter</a><br/>
-                    <a href="">GitHub</a>
+                    <a href="https://twitter.com/luca_cracco">@luca_cracco</a>
+                    <br/>
+                    <a href="https://github.com/lucacracco">github.com/lucacracco</a>
                 </p>
             </section>
         </section>
@@ -71,7 +75,8 @@
                     <li>E' scritto in PHP con una programmazione orientata agli
                         oggetti
                     </li>
-                    <li>Espone già moltissimi task/commandi per lo sviluppo,
+                    <li>Ha a disposizione moltissimi task/comandi per lo
+                        sviluppo,
                         test, distribuzione, ecc..
                     </li>
                 </ul>
@@ -133,7 +138,7 @@
             <section>
                 <h2>Usare Robo per</h2>
                 <ul>
-                    <li>Eseguire commandi</li>
+                    <li>Eseguire comandi</li>
                     <li>Lanciare test</li>
                     <li>Automatizzare le opereazioni più comuni</li>
                     <li>Eseguire attività parallele</li>
@@ -145,8 +150,8 @@
                 <h2>..perchè Robo?</h2>
                 <ul>
                     <li>E' scritto in PHP ad oggetti</li>
-                    <li>Supporto per i commandi: robo list</li>
-                    <li>Commandi con convalida, colori ANSI, ecc..</li>
+                    <li>Supporto per i comandi: robo list</li>
+                    <li>Comandi con convalida, colori ANSI, ecc..</li>
                     <li>Si può installare con Composer per il progetto</li>
                     <li>Vi sono un sacco di task già pronti</li>
                 </ul>
@@ -164,7 +169,7 @@
                         "consolidation/robo": "^1.0.0"
                     }
                 </code></pre>
-                <p>o installandolo "globalmente"</p>
+                <p>o installandolo globalmente</p>
                 <pre><code class="zsh" data-trim>
                     composer global require consolidation/robo
                 </code></pre>
@@ -178,7 +183,7 @@
                 <p>o scaricandolo via HTTPS da <a
                         href="https://github.com/consolidation/Robo/releases">GitHub
                     releases</a></p>
-                <p>Oppure installandolo "globalmente" in /usr/bin</p>
+                <p>Oppure installandolo in /usr/bin</p>
                 <pre><code class="zsh" data-trim>
                     sudo chmod +x robo.phar && mv robo.phar /usr/bin/robo
                 </code></pre>
@@ -197,12 +202,20 @@
                 </code></pre>
                 <p>Ed ecco il file:</p>
                 <pre><code class="php" data-trim>
-                    class RoboFile extends \Robo\Tasks {
-                    }
+/**
+ * This is project's console commands
+ * configuration for Robo task runner.
+ *
+ * @see http://robo.li/
+ */
+class RoboFile extends \Robo\Tasks
+{
+    // define public methods as commands
+}
                 </code></pre>
             </section>
             <section>
-                <h2>Commandi</h2>
+                <h2>Comandi</h2>
                 <pre><code class="php" data-trim>
                     class RoboFile extends \Robo\Tasks {
 
@@ -219,7 +232,7 @@
                 <aside class="notes">
                     Tutti i metodi pubblici della classe RoboFile saranno
                     trattati come comandi. È possibile eseguirli
-                    dall'interfaccia di commando direttamente.
+                    dall'interfaccia di comando direttamente.
                 </aside>
             </section>
 
@@ -490,12 +503,6 @@
                         ->run();
                 </code></pre>
             </section>
-            <section>
-                <h2>Robo & Drupal</h2>
-                <pre><code class="zsh" data-trim>
-                    Inserire un output del commando precedente
-                </code></pre>
-            </section>
         </section>
 
         <section>
@@ -507,28 +514,102 @@
                     <li>Tasks Robo/Drush</li>
                     <li>Yaml Files ➜ Configurations</li>
                 </ul>
+                <p>
+                    <a href="https://github.com/lucacracco/robo-drupal8/">
+                        Work in progress.. <br/>
+                        github.com/lucacracco/robo-drupal8
+                    </a>
+                </p>
             </section>
             <section>
                 <h2>YAML Configurations</h2>
-                <pre><code class="php" data-trim>
-                    inserire un file di configurazione di esempio
+                <pre><code class="yaml" data-trim>
+# Enviroment
+environment: local
+
+# Base Path
+base_path: /var/www/html
+
+# Path to drush
+drush_path: ./vendor/bin/drush
+
+# Domani used
+domain: 'http://test.dd'
+
+# Database Configuration
+database:
+  url: 'mysql://drupal:drupal@mysql_test:3306/drupal'
+  prefix: ''
+  namespace: 'Drupal\\Core\\Database\\Driver\\mysql'
+  driver: 'mysql'
+
+# Site configuration
+site_configuration:
+  mail: site@example.it
+  name: 'Test - Drupal Day Roma 2017 | Drupal8'
+  locale: en
+  profile: standard
+  uri: test
+  sub_dir: test
+  config_dir: '../config/test'
+  root: 'web'
+  site_root: 'web'
+....
                 </code></pre>
             </section>
             <section>
                 <h2>Tasks custom</h2>
                 <pre><code class="php" data-trim>
-                    inserire un task di esempio con collection (SiteInstall per esempio)
+public function deploy($opts = self::OPTS) {
+
+    $this->say("Deploy");
+
+    // Init parameters.
+    $this->init($opts['environment'], $opts['site']);
+
+    // Execute functions.
+    $this->backupDatabase();
+    $this->importConfig();
+    $this->rebuildCache();
+    $this->entityUpdates();
+    $this->coreCron();
+}
                 </code></pre>
             </section>
             <section>
                 <h2>Robo Commands</h2>
-                <pre><code class="php" data-trim>
-                    inserire l'output della lista dei commandi
+                <pre><code class="zsh" data-trim>
+➜  vendor/bin/robo list
+Robo version 1.0.5
+
+Available commands:
+  deploy                   Deploy.
+  help                     Displays help for a command
+  list                     Lists commands
+ build
+  build:conf               Build a site from configuration files.
+  build:from-database      Build an existing site by importing the database.
+  build:new                Build a site from scratch.
+ configuration
+  configuration:export     Export configuration after clear cache.
+  configuration:import     Import configuration.
+ features
+  features:import          Import features.
+  features:import-all      Import All features.
+ fixtures
+  fixtures:import          Import All features.
+ migration
+  migration:import         Perform one or more migration processes.
+  migration:install        Migration install modules dependencies.
+  migration:reset-status   Reset a active migration's status to idle.
+  migration:rollback       Migrate rollback.
+  migration:status         Migrate status.
+  migration:uninstall      Migration uninstall modules dependencies.
                 </code></pre>
             </section>
             <section
-                    data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm"
-                    data-background-color="#000000">
+                    data-background-video="video/record_robo_exec.mkv"
+                    data-background-size="auto 80%">
                 <!-- Nothing. See video in background -->
             </section>
         </section>
@@ -542,6 +623,10 @@
                      class="plain"
                      style="background:none">
             </section>
+        </section>
+
+        <section data-background="images/slide_back.jpg"
+                 data-background-size="auto 80%">
         </section>
 
     </div>
@@ -559,7 +644,7 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 960,
+        width: 1024, // 960
         height: 700,
 
         // Factor of the display size that should remain empty around the content

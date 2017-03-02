@@ -1,0 +1,14 @@
+uuid: b05adf4a-1663-4f47-ac02-054b66b46ed5
+name: 'Test - Drupal Day Roma 2017 | Drupal8'
+mail: site@example.it
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: AyT9s8OUcclfALRE_imByOMgtZ19eOlqdF6zI3p7yqo
