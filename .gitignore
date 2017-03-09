@@ -1,41 +1,7 @@
 # This file contains default .gitignore rules.
 
-# Ignore core and vendor when managing dependencies with Composer.
-/example/docroot/web/core
-/example/docroot/web/modules/contrib
-/example/docroot/web/themes/contrib
-/example/docroot/web/profiles/contrib
-/example/docroot/web/libraries/*
-/example/docroot/vendor
-
-# Ignore configuration files.
-/example/docroot/web/sites/*/settings.php
-/example/docroot/web/sites/*/services.yml
-/example/docroot/build/build.*.*.yml
-/example/docroot/phpunit.xml.dist
-docker-compose.yml
-
-# Ignore paths that contain user-generated content.
-/example/docroot/web/sites/*/files
-/example/docroot/web/sites/*/private
-
-# Ignore reports.
-/example/docroot/reports
-
-# Ignore console logs
-/example/docroot/console
-
-# Ignore backups folder.
-/example/docroot/build/backups/*.sql
-/example/docroot/build/import-backups/*.sql
-
-# Ignore SimpleTest multi-site environment.
-/example/docroot/web/sites/simpletest
-
 # Ignore Other files
 .settings
 .project
 .DS_Store
 .idea
-MAMP*
-MAMP_php_error_log_MAMP
